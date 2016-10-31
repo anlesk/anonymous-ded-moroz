@@ -13,6 +13,6 @@ public class Messages {
     public static final String PARTICIPANTS_FILE_LOAD_ERROR = "Unable to load file.";
 
     public static final String PARTICIPATING_SUCCESS = "You are participant now! Find yourself in a /list. Or do /roll to get your target.";
-    public static final String CLEAR_INSTRUCTIONS = "You are about to clear participants list.\nWrite the following to confirm:\nYes, i want to remove this bastards.";
+    public static final String CLEAR_INSTRUCTIONS = "You are about to clear participants list.\nWrite the following to confirm:\nYes, i want to remove these bastards.";
     public static final String CLEAR_CONFIRMATION = "Participant's list has been cleared.";
 }
