@@ -93,6 +93,7 @@ public class ParticipantController {
 
     public Participant selectRandomParticipant(Participant participant) {
         if (!participantExists(participant)) throw new IllegalArgumentException(Messages.NOT_A_PARTICIPANT);
+        if (participant.getTarget() != null) return participant.getTarget();
 
         Participant result = participants
                 .stream()
@@ -100,6 +101,12 @@ public class ParticipantController {
                 .sorted(Comparator.comparingInt(o -> System.identityHashCode(o) ^ new Random().nextInt()))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(Messages.NO_FREE_PARTICIPANTS_TO_ROLL));
+        participants
+                .stream()
+                .filter(p -> p.equals(participant))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(Messages.NOT_A_PARTICIPANT))
+                .setTarget(result);
 
         saveParticipants();
         return result;
