@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+jar {
+    baseName = 'anonymous-ded-moroz'
+    version = '0.1'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    compile 'com.github.anlesk:spring-telegram-bot-starter:4bf0d4c041'
+    compile 'org.yaml.snakeyaml'
+
+//    testCompile("junit:junit")
+}
