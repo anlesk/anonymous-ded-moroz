@@ -8,6 +8,15 @@ import java.util.Objects;
 public class Participant extends Entry {
 
     private Participant target;
+    private boolean used;
+
+    public boolean isUsed() {
+        return used;
+    }
+
+    public void setUsed(boolean used) {
+        this.used = used;
+    }
 
     public Participant getTarget() {
         return target;
@@ -23,6 +32,7 @@ public class Participant extends Entry {
         sb.append("Name: ").append(getName())
                 .append(" nick: ").append(getNick())
                 .append(" (Id: ").append(getId()).append(")")
+                .append(" used: ").append(isUsed())
                 .append(" target: ").append(getTarget() != null ? getTarget().getName() : null);
 
         return sb.toString();
