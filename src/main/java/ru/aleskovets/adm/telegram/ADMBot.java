@@ -84,7 +84,7 @@ public class ADMBot {
         return sendMessage(Messages.CLEAR_INSTRUCTIONS, updateEvent);
     }
 
-    @MessageMapping(text = "Yes, i want to remove this bastards.")
+    @MessageMapping(text = "Yes, i want to remove these bastards.")
     public MessageResponse confirmClear(UpdateEvent updateEvent) {
         participantController.clearParticipants();
         return sendMessage(Messages.CLEAR_CONFIRMATION, updateEvent);
