@@ -1,9 +1,14 @@
+theVersion = "1.0"
+theGroup = "ru.aleskovets"
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
+version = theVersion
+group = theGroup
+
 jar {
     baseName = 'anonymous-ded-moroz'
-    version = '0.1'
 }
 
 sourceCompatibility = 1.8
