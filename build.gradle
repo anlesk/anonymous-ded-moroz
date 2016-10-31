@@ -1,11 +1,8 @@
-theVersion = "1.0"
-theGroup = "ru.aleskovets"
-
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
-version = theVersion
-group = theGroup
+version = "1.0"
+group = "ru.aleskovets"
 
 jar {
     baseName = 'anonymous-ded-moroz'
@@ -21,7 +18,7 @@ repositories {
 
 dependencies {
     compile 'com.github.anlesk:spring-telegram-bot-starter:4bf0d4c041'
-    compile 'org.yaml.snakeyaml'
+    compile 'org.yaml:snakeyaml:1.17'
 
 //    testCompile("junit:junit")
 }
