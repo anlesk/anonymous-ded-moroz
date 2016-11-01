@@ -74,9 +74,10 @@ public class ParticipantController {
     }
 
     public String showParticipants() {
-        return Stream.of(participants)
+        return participants
+                .stream()
                 .map(Object::toString)
-                .collect(Collectors.joining(",  "));
+                .collect(Collectors.joining("\n---\n"));
     }
 
     public void addParticipant(Participant participant) {
