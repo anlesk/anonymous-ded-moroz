@@ -92,8 +92,13 @@ public class ParticipantController {
     }
 
     public Participant selectRandomParticipant(Participant participant) {
-        if (!participantExists(participant)) throw new IllegalArgumentException(Messages.NOT_A_PARTICIPANT);
-        if (participant.getTarget() != null) return participant.getTarget();
+        Participant user = participants
+                .stream()
+                .filter(p -> p.equals(participant))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(Messages.NOT_A_PARTICIPANT));
+
+        if (user.getTarget() != null) return user.getTarget();
 
         Participant result = participants
                 .stream()
@@ -104,13 +109,7 @@ public class ParticipantController {
                 .orElseThrow(() -> new IllegalArgumentException(Messages.NO_FREE_PARTICIPANTS_TO_ROLL));
 
         result.setUsed(true);
-
-        participants
-                .stream()
-                .filter(p -> p.equals(participant))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(Messages.NOT_A_PARTICIPANT))
-                .setTarget(result);
+        user.setTarget(result);
 
         saveParticipants();
         return result;
