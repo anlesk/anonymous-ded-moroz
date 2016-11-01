@@ -1,19 +1,28 @@
 package ru.aleskovets.adm.telegram;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.User;
+import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboard;
+import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 import ru.aleskovets.adm.telegram.controller.ParticipantController;
 import ru.aleskovets.adm.telegram.messages.Messages;
 import ru.aleskovets.adm.telegram.model.Participant;
 import ru.aleskovets.adm.telegram.utils.ParticipantUtils;
 import ru.skuptsov.telegram.bot.platform.client.TelegramBotApi;
 import ru.skuptsov.telegram.bot.platform.client.command.MessageResponse;
+import ru.skuptsov.telegram.bot.platform.client.command.impl.SendMessageCommand;
 import ru.skuptsov.telegram.bot.platform.handler.annotation.MessageHandler;
 import ru.skuptsov.telegram.bot.platform.handler.annotation.MessageMapping;
 import ru.skuptsov.telegram.bot.platform.model.UpdateEvent;
 
 import javax.annotation.PostConstruct;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static ru.skuptsov.telegram.bot.platform.client.command.MessageResponse.fromCommand;
 import static ru.skuptsov.telegram.bot.platform.client.command.MessageResponse.sendMessage;
 
 /**
@@ -34,6 +43,26 @@ public class ADMBot {
                 .getMe()
                 .get()
                 .getUserName();
+    }
+
+    @MessageMapping(regexp = "/start(@.*)?")
+    public MessageResponse start(UpdateEvent updateEvent) {
+        SendMessage sendMessage = new SendMessage();
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+        List<KeyboardRow> keyboard = new ArrayList<>();
+        KeyboardRow keyboardFirstRow = new KeyboardRow();
+        keyboardFirstRow.add("/participate");
+        KeyboardRow keyboardSecondRow = new KeyboardRow();
+        keyboardSecondRow.add("/roll");
+        keyboard.add(keyboardFirstRow);
+        keyboard.add(keyboardSecondRow);
+        replyKeyboardMarkup.setKeyboard(keyboard);
+        sendMessage.setReplyMarkup(replyKeyboardMarkup);
+        sendMessage.setText("Hello challenger!");
+        sendMessage.enableMarkdown(true);
+        sendMessage.setChatId(String.valueOf(updateEvent.getUpdate().getMessage().getChatId()));
+
+        return fromCommand(new SendMessageCommand(sendMessage));
     }
 
     @MessageMapping(regexp = "/me(@.*)?")
