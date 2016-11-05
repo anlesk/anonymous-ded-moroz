@@ -23,7 +23,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Created by ad on 10/30/2016.
@@ -43,7 +42,7 @@ public class ParticipantController {
         participantsConstructor.addTypeDescription(participantsDescription);
         Yaml yaml = new Yaml(participantsConstructor);
         Path path = Paths.get(config.getParticipantsFilePath());
-        Participants participants = new Participants();
+        Participants participants = null;
 
         try {
             participants = (Participants) yaml.load(Files.newInputStream(path));
@@ -51,10 +50,7 @@ public class ParticipantController {
             System.out.println(Messages.PARTICIPANTS_FILE_LOAD_ERROR);
         }
 
-        List<Participant> participantsList = participants.getParticipants();
-        if (participantsList == null) participantsList = new ArrayList<>();
-
-        this.participants = participantsList;
+        this.participants = participants != null ? participants.getParticipants() : new ArrayList<>();
     }
 
     private void saveParticipants() {
