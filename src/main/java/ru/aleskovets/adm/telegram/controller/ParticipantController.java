@@ -105,6 +105,7 @@ public class ParticipantController {
                 .stream()
                 .filter(p -> !p.equals(participant))
                 .filter(p -> !p.isUsed())
+                .filter(p -> !participant.equals(p.getTarget()))
                 .sorted(Comparator.comparingInt(o -> System.identityHashCode(o) ^ new Random().nextInt()))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(Messages.NO_FREE_PARTICIPANTS_TO_ROLL));
