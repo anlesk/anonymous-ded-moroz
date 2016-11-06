@@ -23,6 +23,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Created by ad on 10/30/2016.
@@ -70,6 +71,12 @@ public class ParticipantController {
     }
 
     public String showParticipants() {
+        return IntStream.range(0, participants.size())
+                .mapToObj(i -> (i + 1) + ". " + participants.get(i).getName())
+                .collect(Collectors.joining("\n"));
+    }
+
+    public String showDetailedParticipants() {
         return participants
                 .stream()
                 .map(Object::toString)
