@@ -84,7 +84,7 @@ public class ParticipantController {
     }
 
     public void clearParticipants() {
-        participants = new ArrayList<>();
+        participants.forEach(p -> p.setTarget(null));
         saveParticipants();
     }
 
