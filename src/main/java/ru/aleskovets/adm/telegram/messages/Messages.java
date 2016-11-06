@@ -8,6 +8,7 @@ public class Messages {
     public static final String NOT_A_PARTICIPANT = "You are not a participant. Do /participate to participate in event.";
     public static final String ALREADY_PARTICIPATING = "You are already participating!";
     public static final String NO_FREE_PARTICIPANTS_TO_ROLL = "No participant to choose. Please wait for more participants to join.";
+    public static final String NOT_ENOUGH_PARTICIPANTS = "Not all participants are in the game. Please wait for more participants to join.";
 
     public static final String PARTICIPANTS_FILE_SAVE_ERROR = "Unable to save file.";
     public static final String PARTICIPANTS_FILE_LOAD_ERROR = "Unable to load file.";

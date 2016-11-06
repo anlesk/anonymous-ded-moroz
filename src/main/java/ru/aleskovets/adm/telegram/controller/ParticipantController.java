@@ -101,6 +101,8 @@ public class ParticipantController {
     }
 
     public Participant selectRandomParticipant(Participant participant) {
+        if (participants.size() != config.getExpectedNumber()) throw new IllegalArgumentException(Messages.NOT_ENOUGH_PARTICIPANTS);
+
         Participant user = participants
                 .stream()
                 .filter(p -> p.equals(participant))

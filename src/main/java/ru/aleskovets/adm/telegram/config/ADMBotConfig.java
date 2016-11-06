@@ -11,8 +11,14 @@ public class ADMBotConfig {
 
     @Value("${participants.file}")
     private String participantsFilePath;
+    @Value("${participants.expectedNumber}")
+    private Integer expectedNumber;
 
     public String getParticipantsFilePath() {
         return participantsFilePath;
+    }
+
+    public Integer getExpectedNumber() {
+        return expectedNumber;
     }
 }
