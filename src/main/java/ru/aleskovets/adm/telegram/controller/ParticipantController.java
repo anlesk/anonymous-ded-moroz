@@ -84,7 +84,12 @@ public class ParticipantController {
     }
 
     public void clearParticipants() {
-        participants.forEach(p -> p.setTarget(null));
+        participants = participants
+                .stream()
+                .peek(p -> p.setTarget(null))
+                .peek(p -> p.setUsed(false))
+                .collect(Collectors.toList());
+
         saveParticipants();
     }
 
