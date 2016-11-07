@@ -72,7 +72,7 @@ public class ParticipantController {
 
     public String showParticipants() {
         return IntStream.range(0, participants.size())
-                .mapToObj(i -> (i + 1) + ". " + participants.get(i).getName())
+                .mapToObj(i -> (i + 1) + ". " + ((i + 1) < 10 ? "  " : "") + (participants.get(i).getTarget() != null ? '\u2705' : "") + " " + participants.get(i).getName())
                 .collect(Collectors.joining("\n"));
     }
 
