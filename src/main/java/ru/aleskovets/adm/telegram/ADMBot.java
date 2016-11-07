@@ -84,7 +84,11 @@ public class ADMBot {
 
     @MessageMapping(regexp = "/detailed(@.*)?")
     public MessageResponse showDetailedParticipants(UpdateEvent updateEvent) {
-        return sendMessage(participantController.showDetailedParticipants(), updateEvent);
+        try {
+            return sendMessage(participantController.showDetailedParticipants(), updateEvent);
+        } catch (IllegalArgumentException e) {
+            return sendMessage(e.getMessage(), updateEvent);
+        }
     }
 
     @MessageMapping(regexp = "/participate(@.*)?")
@@ -119,8 +123,12 @@ public class ADMBot {
 
     @MessageMapping(text = "Yes, i want to remove these bastards.")
     public MessageResponse confirmClear(UpdateEvent updateEvent) {
-        participantController.clearParticipants();
-        return sendMessage(Messages.CLEAR_CONFIRMATION, updateEvent);
+        try {
+            participantController.clearParticipants();
+            return sendMessage(Messages.CLEAR_CONFIRMATION, updateEvent);
+        } catch (IllegalArgumentException e) {
+            return sendMessage(e.getMessage(), updateEvent);
+        }
     }
 
     @MessageMapping(regexp = "/check(@.*)?")

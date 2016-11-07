@@ -77,6 +77,8 @@ public class ParticipantController {
     }
 
     public String showDetailedParticipants() {
+        if (!config.getDetailedListAllowed()) throw new IllegalArgumentException(Messages.DETAILED_LIST_RESTRICTED);
+
         return participants
                 .stream()
                 .map(Object::toString)
@@ -91,7 +93,7 @@ public class ParticipantController {
     }
 
     public void clearParticipants() {
-        if (!config.isClearAllowed()) throw new IllegalArgumentException(Messages.CLEAR_RESTRICTED);
+        if (!config.getClearAllowed()) throw new IllegalArgumentException(Messages.CLEAR_RESTRICTED);
 
         participants = participants
                 .stream()

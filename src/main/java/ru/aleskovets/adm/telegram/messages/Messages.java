@@ -17,4 +17,5 @@ public class Messages {
     public static final String CLEAR_INSTRUCTIONS = "You are about to clear participants list.\nWrite the following to confirm:\nYes, i want to remove these bastards.";
     public static final String CLEAR_CONFIRMATION = "Participant's list has been cleared.";
     public static final String CLEAR_RESTRICTED = "Clear is not allowed!";
+    public static final String DETAILED_LIST_RESTRICTED = "View detailed list is disabled!";
 }
