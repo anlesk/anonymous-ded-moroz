@@ -3,7 +3,6 @@ package ru.aleskovets.adm.telegram;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.User;
-import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 import ru.aleskovets.adm.telegram.controller.ParticipantController;
@@ -122,5 +121,10 @@ public class ADMBot {
     public MessageResponse confirmClear(UpdateEvent updateEvent) {
         participantController.clearParticipants();
         return sendMessage(Messages.CLEAR_CONFIRMATION, updateEvent);
+    }
+
+    @MessageMapping(regexp = "/check(@.*)?")
+    public MessageResponse checkReuslts(UpdateEvent updateEvent) {
+        return sendMessage(participantController.checkResult(), updateEvent);
     }
 }

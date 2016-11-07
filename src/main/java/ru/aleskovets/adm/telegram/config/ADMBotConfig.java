@@ -13,6 +13,8 @@ public class ADMBotConfig {
     private String participantsFilePath;
     @Value("${participants.expectedNumber}")
     private Integer expectedNumber;
+    @Value("${participants.clearAllowed}")
+    private Boolean clearAllowed;
 
     public String getParticipantsFilePath() {
         return participantsFilePath;
@@ -20,5 +22,9 @@ public class ADMBotConfig {
 
     public Integer getExpectedNumber() {
         return expectedNumber;
+    }
+
+    public Boolean isClearAllowed() {
+        return clearAllowed;
     }
 }

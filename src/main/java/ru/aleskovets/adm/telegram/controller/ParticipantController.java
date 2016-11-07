@@ -91,6 +91,8 @@ public class ParticipantController {
     }
 
     public void clearParticipants() {
+        if (!config.isClearAllowed()) throw new IllegalArgumentException(Messages.CLEAR_RESTRICTED);
+
         participants = participants
                 .stream()
                 .peek(p -> p.setTarget(null))
@@ -133,5 +135,15 @@ public class ParticipantController {
                 .filter(p -> p.equals(participant))
                 .findFirst()
                 .isPresent();
+    }
+
+    public String checkResult() {
+        int size = participants
+                .stream()
+                .filter(p -> p.getTarget() == null || p.getTarget().equals(p))
+                .collect(Collectors.toList())
+                .size();
+
+        return size > 0 ? "SOMETHING GOES WRONG" : "Everything is OK";
     }
 }
