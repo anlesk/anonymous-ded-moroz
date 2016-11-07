@@ -83,6 +83,11 @@ public class ADMBot {
         return sendMessage(participantController.showParticipants(), updateEvent);
     }
 
+    @MessageMapping(regexp = "/detailed(@.*)?")
+    public MessageResponse showDetailedParticipants(UpdateEvent updateEvent) {
+        return sendMessage(participantController.showDetailedParticipants(), updateEvent);
+    }
+
     @MessageMapping(regexp = "/participate(@.*)?")
     public MessageResponse participate(UpdateEvent updateEvent) {
         try {
